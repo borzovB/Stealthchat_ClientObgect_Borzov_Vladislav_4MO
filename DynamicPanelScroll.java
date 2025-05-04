@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class DynamicPanelScroll {
     // Константы для минимального количества панелей и зоны буфера прокрутки
-    private static final int MIN_PANELS = 10; // Минимальное количество отображаемых панелей
+    private static final int MAX_PANELS = 10; // Максимальное количество отображаемых панелей
     private static final int BUFFER_ZONE = 20; // Зона в пикселях для активации подгрузки панелей
     // Высоты панелей для различных типов контента
     private static int panelHeightMin = 60; // Минимальная высота панели (для коротких текстов)
@@ -164,7 +164,7 @@ public class DynamicPanelScroll {
         mainPanel.removeAll(); // Очищает главную панель
         // Вычисляет количество видимых панелей
         int viewportHeight = Math.max(scrollPane.getViewport().getHeight(), 1);
-        int visiblePanels = Math.max(viewportHeight / panelHeightMin, MIN_PANELS);
+        int visiblePanels = Math.max(viewportHeight / panelHeightMin, MAX_PANELS);
         int totalPanels = database.getTotalPanels();
         firstVisibleIndex = Math.max(0, totalPanels - visiblePanels);
         lastVisibleIndex = totalPanels - 1;
@@ -791,7 +791,7 @@ public class DynamicPanelScroll {
 
     // Удаляет панель, если их больше минимального количества
     private void removePanel(boolean removeTop) {
-        if (mainPanel.getComponentCount() > MIN_PANELS) {
+        if (mainPanel.getComponentCount() > MAX_PANELS) {
             if (removeTop) {
                 mainPanel.remove(0);
             } else {
@@ -901,10 +901,10 @@ public class DynamicPanelScroll {
 
                 // Подгружаем панели, если их меньше минимального количества
                 int currentCount = mainPanel.getComponentCount();
-                if (currentCount < MIN_PANELS && totalPanels > currentCount) {
+                if (currentCount < MAX_PANELS && totalPanels > currentCount) {
                     if (firstVisibleIndex > 0) {
                         // Подгрузка сверху
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, firstVisibleIndex);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, firstVisibleIndex);
                         List<PanelData> newPanels = database.getPanels(firstVisibleIndex - panelsToLoad, firstVisibleIndex - 1);
                         for (int i = newPanels.size() - 1; i >= 0; i--) {
                             addPanel(newPanels.get(i), true);
@@ -912,7 +912,7 @@ public class DynamicPanelScroll {
                         firstVisibleIndex -= panelsToLoad;
                     } else if (lastVisibleIndex < totalPanels - 1) {
                         // Подгрузка снизу
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
                         List<PanelData> newPanels = database.getPanels(lastVisibleIndex + 1, lastVisibleIndex + panelsToLoad);
                         for (PanelData newPanel : newPanels) {
                             addPanel(newPanel, false);

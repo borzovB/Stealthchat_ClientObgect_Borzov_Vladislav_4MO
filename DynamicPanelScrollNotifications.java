@@ -19,7 +19,7 @@ import java.time.format.DateTimeParseException;
 
 public class DynamicPanelScrollNotifications {
     // Константы для минимального количества панелей и зоны буфера прокрутки
-    private static final int MIN_PANELS = 10; // Минимальное количество отображаемых панелей
+    private static final int MAX_PANELS = 10; // Максимальное количество отображаемых панелей
     private static final int BUFFER_ZONE = 20; // Зона в пикселях для активации подгрузки панелей
     // Минимальная и максимальная высота панелей
     private static int panelHeightMin;
@@ -174,7 +174,7 @@ public class DynamicPanelScrollNotifications {
 
         // Вычисляет количество видимых панелей
         int viewportHeight = Math.max(scrollPane.getViewport().getHeight(), 1);
-        int visiblePanels = Math.max(viewportHeight / panelHeightMin, MIN_PANELS);
+        int visiblePanels = Math.max(viewportHeight / panelHeightMin, MAX_PANELS);
 
         // Загружает панели в зависимости от типа уведомления
         if (type.equals("1a")) {
@@ -714,16 +714,16 @@ public class DynamicPanelScrollNotifications {
 
                 // Подгружает панели, если их меньше минимального количества
                 int currentCount = mainPanel.getComponentCount();
-                if (currentCount < MIN_PANELS && totalPanels > currentCount) {
+                if (currentCount < MAX_PANELS && totalPanels > currentCount) {
                     if (firstVisibleIndex > 0) {
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, firstVisibleIndex);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, firstVisibleIndex);
                         List<PanelDataRequests> newPanels = database.getPanelsFriend(firstVisibleIndex - panelsToLoad, firstVisibleIndex - 1);
                         for (int i = newPanels.size() - 1; i >= 0; i--) {
                             addPanel(newPanels.get(i), true);
                         }
                         firstVisibleIndex -= panelsToLoad;
                     } else if (lastVisibleIndex < totalPanels - 1) {
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
                         List<PanelDataRequests> newPanels = database.getPanelsFriend(lastVisibleIndex + 1, lastVisibleIndex + panelsToLoad);
                         for (PanelDataRequests newPanel : newPanels) {
                             addPanel(newPanel, false);
@@ -814,16 +814,16 @@ public class DynamicPanelScrollNotifications {
                 }
 
                 int currentCount = mainPanel.getComponentCount();
-                if (currentCount < MIN_PANELS && totalPanels > currentCount) {
+                if (currentCount < MAX_PANELS && totalPanels > currentCount) {
                     if (firstVisibleIndex > 0) {
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, firstVisibleIndex);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, firstVisibleIndex);
                         List<GetChatPlanningPanel> newPanels = database.getPanelsFriend_4(firstVisibleIndex - panelsToLoad, firstVisibleIndex - 1);
                         for (int i = newPanels.size() - 1; i >= 0; i--) {
                             addPanel_4(newPanels.get(i), true);
                         }
                         firstVisibleIndex -= panelsToLoad;
                     } else if (lastVisibleIndex < totalPanels - 1) {
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
                         List<GetChatPlanningPanel> newPanels = database.getPanelsFriend_4(lastVisibleIndex + 1, lastVisibleIndex + panelsToLoad);
                         for (GetChatPlanningPanel newPanel : newPanels) {
                             addPanel_4(newPanel, false);
@@ -914,16 +914,16 @@ public class DynamicPanelScrollNotifications {
                 }
 
                 int currentCount = mainPanel.getComponentCount();
-                if (currentCount < MIN_PANELS && totalPanels > currentCount) {
+                if (currentCount < MAX_PANELS && totalPanels > currentCount) {
                     if (firstVisibleIndex > 0) {
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, firstVisibleIndex);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, firstVisibleIndex);
                         List<RequestsResponses> newPanels = database.getPanelsFriend_1(firstVisibleIndex - panelsToLoad, firstVisibleIndex - 1);
                         for (int i = newPanels.size() - 1; i >= 0; i--) {
                             addPanel_1(newPanels.get(i), true);
                         }
                         firstVisibleIndex -= panelsToLoad;
                     } else if (lastVisibleIndex < totalPanels - 1) {
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
                         List<RequestsResponses> newPanels = database.getPanelsFriend_1(lastVisibleIndex + 1, lastVisibleIndex + panelsToLoad);
                         for (RequestsResponses newPanel : newPanels) {
                             addPanel_1(newPanel, false);
@@ -1014,16 +1014,16 @@ public class DynamicPanelScrollNotifications {
                 }
 
                 int currentCount = mainPanel.getComponentCount();
-                if (currentCount < MIN_PANELS && totalPanels > currentCount) {
+                if (currentCount < MAX_PANELS && totalPanels > currentCount) {
                     if (firstVisibleIndex > 0) {
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, firstVisibleIndex);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, firstVisibleIndex);
                         List<FriendBlockPanel> newPanels = database.getPanelsFriend_2(firstVisibleIndex - panelsToLoad, firstVisibleIndex - 1);
                         for (int i = newPanels.size() - 1; i >= 0; i--) {
                             addPanel_2(newPanels.get(i), true);
                         }
                         firstVisibleIndex -= panelsToLoad;
                     } else if (lastVisibleIndex < totalPanels - 1) {
-                        int panelsToLoad = Math.min(MIN_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
+                        int panelsToLoad = Math.min(MAX_PANELS - currentCount, totalPanels - lastVisibleIndex - 1);
                         List<FriendBlockPanel> newPanels = database.getPanelsFriend_2(lastVisibleIndex + 1, lastVisibleIndex + panelsToLoad);
                         for (FriendBlockPanel newPanel : newPanels) {
                             addPanel_2(newPanel, false);
@@ -1127,7 +1127,7 @@ public class DynamicPanelScrollNotifications {
 
     // Удаляет панель, если их больше минимального количества
     private void removePanel(boolean removeTop) {
-        if (mainPanel.getComponentCount() > MIN_PANELS) {
+        if (mainPanel.getComponentCount() > MAX_PANELS) {
             if (removeTop) {
                 mainPanel.remove(0);
             } else {

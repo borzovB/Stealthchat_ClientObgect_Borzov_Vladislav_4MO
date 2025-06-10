@@ -152,14 +152,14 @@ public class KeyGet {
                 case "1a" -> "AES";
                 case "1b" -> "Twofish";
                 case "1c" -> "Serpent";
-                default -> throw new NoSuchAlgorithmException("Unknown algorithm code: " + oldAlg);
+                default -> throw new NoSuchAlgorithmException("Неизвестный код алгоритма: " + oldAlg);
             };
 
             String algorithmNew = switch (newAlg.toLowerCase()) {
                 case "1a" -> "AES";
                 case "1b" -> "Twofish";
                 case "1c" -> "Serpent";
-                default -> throw new NoSuchAlgorithmException("Unknown algorithm code: " + newAlg);
+                default -> throw new NoSuchAlgorithmException("Неизвестный код алгоритма: " + newAlg);
             };
 
             // Инициализирует шифры для расшифровки и шифрования

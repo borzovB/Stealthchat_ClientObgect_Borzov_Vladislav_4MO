@@ -1381,11 +1381,11 @@ public class Database {
     // Получает данные из таблицы с фильтрацией по хэшированному значению
     public static String[] getTableData(String tableName, List<String> fields, String filterColumn, String filterValue) throws SQLException {
         if (fields == null || fields.isEmpty()) {
-            throw new IllegalArgumentException("Fields list cannot be null or empty");
+            throw new IllegalArgumentException("Список полей не может быть нулевым или пустым");
         }
 
         if (filterColumn == null || filterColumn.isEmpty()) {
-            throw new IllegalArgumentException("Filter column cannot be null or empty");
+            throw new IllegalArgumentException("Столбец фильтра не может быть нулевым или пустым");
         }
 
         // Формируем SQL-запрос для получения данных по указанному столбцу

@@ -191,7 +191,7 @@ public class FriendRequestPanel {
                     case "1a" -> KeyGet.generationKeyAES();
                     case "1b" -> KeyGet.generationKeyTwoFishAndSerpent("Twofish", "BC");
                     case "1c" -> KeyGet.generationKeyTwoFishAndSerpent("Serpent", "BC");
-                    default -> throw new IllegalStateException("Unexpected algorithm: " + alg);
+                    default -> throw new IllegalStateException("Неожиданный алгоритм: " + alg);
                 };
 
                 // Шифрует ключ с использованием публичного ключа
